@@ -40,7 +40,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/verify-ssr-2",
+            "outputPath": "dist/verify-ssr-2/browser",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -104,6 +104,64 @@
           "options": {
             "browserTarget": "verify-ssr-2:build"
           }
+        },
+        "server": {
+          "builder": "@angular-devkit/build-angular:server",
+          "options": {
+            "outputPath": "dist/verify-ssr-2/server",
+            "main": "server.ts",
+            "tsConfig": "tsconfig.server.json"
+          },
+          "configurations": {
+            "production": {
+              "outputHashing": "media",
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.prod.ts"
+                }
+              ]
+            },
+            "development": {
+              "optimization": false,
+              "sourceMap": true,
+              "extractLicenses": false
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve-ssr": {
+          "builder": "@nguniversal/builders:ssr-dev-server",
+          "configurations": {
+            "development": {
+              "browserTarget": "verify-ssr-2:build:development",
+              "serverTarget": "verify-ssr-2:server:development"
+            },
+            "production": {
+              "browserTarget": "verify-ssr-2:build:production",
+              "serverTarget": "verify-ssr-2:server:production"
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "prerender": {
+          "builder": "@nguniversal/builders:prerender",
+          "options": {
+            "routes": [
+              "/"
+            ]
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "verify-ssr-2:build:production",
+              "serverTarget": "verify-ssr-2:server:production"
+            },
+            "development": {
+              "browserTarget": "verify-ssr-2:build:development",
+              "serverTarget": "verify-ssr-2:server:development"
+            }
+          },
+          "defaultConfiguration": "production"
         }
       }
     }
