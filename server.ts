@@ -6,6 +6,7 @@ import * as express from 'express';
 import { existsSync } from 'fs';
 import { join } from 'path';
 
+import '@ng-web-apis/universal/mocks';
 import { AppServerModule } from './src/main.server';
 
 // The Express app is exported so that it can be used by serverless Functions.

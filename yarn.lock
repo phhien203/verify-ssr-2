@@ -1395,6 +1395,20 @@
   resolved "https://registry.yarnpkg.com/@leichtgewicht/ip-codec/-/ip-codec-2.0.4.tgz#b2ac626d6cb9c8718ab459166d4bb405b8ffa78b"
   integrity sha512-Hcv+nVC0kZnQ3tD9GVu5xSMR4VVYOteQIr/hwFPVEvPdlXqgGEuRjiheChHgdM+JyqdgNcmzZOX/tnl0JOiI7A==
 
+"@ng-web-apis/common@^2.1.0":
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/@ng-web-apis/common/-/common-2.1.0.tgz#3b2f367569678f70b0387757fc1c13515ae09d56"
+  integrity sha512-6DLtrsk59z9YwfR8Pm1DiExXpxvMk/RVry/mfsAKkyRmgCGICgDdyQ+eWMVhrOIyUAtt9V+DRvHUeC6iYaHKNQ==
+  dependencies:
+    tslib "^2.2.0"
+
+"@ng-web-apis/universal@^2.1.0":
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/@ng-web-apis/universal/-/universal-2.1.0.tgz#f0cd3bf322cf73c35960aedb3d0d6c1ef2ee49d0"
+  integrity sha512-/m6XAr2Pqpv7EOr5p/NsCUrRbLXpYH9/uIc+5HEi3kn8zYcGiM43ThX0Ln0Z8hKfsODNRmp21i764DOznSdGqw==
+  dependencies:
+    tslib "^2.2.0"
+
 "@ngtools/webpack@14.2.10":
   version "14.2.10"
   resolved "https://registry.yarnpkg.com/@ngtools/webpack/-/webpack-14.2.10.tgz#d33ff1147d01bd1f5d936a3d1744c81a28e2ca6a"
@@ -6562,7 +6576,7 @@ tslib@^1.9.0:
   resolved "https://registry.yarnpkg.com/tslib/-/tslib-1.14.1.tgz#cf2d38bdc34a134bcaf1091c41f6619e2f672d00"
   integrity sha512-Xni35NKzjgMrwevysHTCArtLDpPvye8zV/0E4EyYn43P7/7qvQwPh9BGkHewbMulVntbigmcT7rdX3BNo9wRJg==
 
-tslib@^2.0.3, tslib@^2.1.0, tslib@^2.3.0:
+tslib@^2.0.3, tslib@^2.1.0, tslib@^2.2.0, tslib@^2.3.0:
   version "2.4.1"
   resolved "https://registry.yarnpkg.com/tslib/-/tslib-2.4.1.tgz#0d0bfbaac2880b91e22df0768e55be9753a5b17e"
   integrity sha512-tGyy4dAjRIEwI7BzsB0lynWgOpfqjUdq91XXAlIWD2OwKBH7oCl/GZG/HT4BOHrTlPMOASlMQ7veyTqpmRcrNA==
