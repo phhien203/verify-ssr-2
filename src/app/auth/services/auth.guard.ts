@@ -9,7 +9,9 @@ import {
 import { OAuthService } from "angular-oauth2-oidc";
 import { Observable } from "rxjs";
 
-@Injectable()
+@Injectable({
+  providedIn: "root",
+})
 export class AuthGuard implements CanActivate {
   constructor(private oauthService: OAuthService, private router: Router) {
     console.log("AuthGuard");
