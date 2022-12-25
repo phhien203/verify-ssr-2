@@ -28,6 +28,7 @@
     "@nguniversal/express-engine": "^14.2.3",
     "@ngx-utils/cookies": "^4.0.1",
     "angular-oauth2-oidc": "14",
+    "angular-oauth2-oidc-jwks": "^15.0.1",
     "cookie-parser": "^1.4.6",
     "express": "^4.15.2",
     "rxjs": "~7.5.0",
