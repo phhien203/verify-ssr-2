@@ -47,7 +47,17 @@ export function app(): express.Express {
     res.render(indexHtml, {
       req,
       res,
-      providers: [{ provide: APP_BASE_HREF, useValue: req.baseUrl }],
+      providers: [
+        { provide: APP_BASE_HREF, useValue: req.baseUrl },
+        {
+          provide: "REQUEST",
+          useValue: req,
+        },
+        {
+          provide: "RESPONSE",
+          useValue: res,
+        },
+      ],
     });
   });
 
