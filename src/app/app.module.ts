@@ -7,10 +7,11 @@ import { environment } from "../environments/environment";
 import { AuthBrowserModule } from "./auth/auth.browser.module";
 import { AppRoutingModule } from "./app-routing.module";
 import { HomeComponent } from "./home/home.component";
-import { LoginComponent } from "./auth/login/login.component";
+import { LoginComponent } from "./login/login.component";
+import { ProfileComponent } from "./profile/profile.component";
 
 @NgModule({
-  declarations: [AppComponent, HomeComponent, LoginComponent],
+  declarations: [AppComponent, HomeComponent, LoginComponent, ProfileComponent],
   imports: [
     BrowserModule.withServerTransition({ appId: "serverApp" }),
     ServiceWorkerModule.register("ngsw-worker.js", {

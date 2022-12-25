@@ -39,7 +39,8 @@ import { LOCAL_STORAGE, WINDOW } from "@ng-web-apis/common";
       </li>
     </ul>
 
-    <a [routerLink]="['/']">Home</a> |
+    <a [routerLink]="['/']">Home</a> | <a [routerLink]="['/login']">Login</a> |
+    <a [routerLink]="['/profile']">Profile</a> |
 
     <router-outlet></router-outlet>
   `,
