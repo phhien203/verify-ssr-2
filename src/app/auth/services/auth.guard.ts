@@ -11,12 +11,15 @@ import { Observable } from "rxjs";
 
 @Injectable()
 export class AuthGuard implements CanActivate {
-  constructor(private oauthService: OAuthService, private router: Router) {}
+  constructor(private oauthService: OAuthService, private router: Router) {
+    console.log("AuthGuard");
+  }
 
   canActivate(
     _route: ActivatedRouteSnapshot,
     _state: RouterStateSnapshot
   ):
+    | boolean
     | boolean
     | UrlTree
     | Observable<boolean | UrlTree>
