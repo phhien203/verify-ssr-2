@@ -45,6 +45,7 @@ export class AuthService implements OnInit, OnDestroy {
     console.log("AuthService");
 
     if (isPlatformBrowser(this.platformId)) {
+      console.log("This code is run in browser");
       // Client only code.
       let storedConfig = this.cookieService.get("config");
 
@@ -53,6 +54,8 @@ export class AuthService implements OnInit, OnDestroy {
         //this.cookieService.remove(storedConfig);
       }
     }
+
+    console.log("this code is run in server and browser");
 
     this._isAuthenticated.next(this.oauthService.hasValidAccessToken());
 
