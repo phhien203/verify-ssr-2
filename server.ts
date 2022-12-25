@@ -14,7 +14,7 @@ import * as cookieParser from "cookie-parser";
 export function app(): express.Express {
   const server = express();
 
-  server.use(cookieParser(process.env["SESSION_SECRET"]));
+  // server.use(cookieParser(process.env["SESSION_SECRET"]));
 
   const distFolder = join(process.cwd(), "dist/verify-ssr-2/browser");
   const indexHtml = existsSync(join(distFolder, "index.original.html"))
