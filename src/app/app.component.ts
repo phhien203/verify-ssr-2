@@ -38,6 +38,10 @@ import { LOCAL_STORAGE, WINDOW } from "@ng-web-apis/common";
         </h2>
       </li>
     </ul>
+
+    <a [routerLink]="['/']">Home</a> |
+
+    <router-outlet></router-outlet>
   `,
   styles: [],
 })
@@ -49,6 +53,6 @@ export class AppComponent {
     @Inject(LOCAL_STORAGE) private readonly localStorageRef: Storage
   ) {
     console.log(this.windowRef.location.href);
-    this.localStorageRef.setItem("verify-ssr-2", "hehehe2");
+    // this.localStorageRef.setItem("verify-ssr-2", "hehehe2");
   }
 }
