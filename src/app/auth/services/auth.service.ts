@@ -7,7 +7,7 @@ import {
   PLATFORM_ID,
 } from "@angular/core";
 import { Router } from "@angular/router";
-import { CookiesService } from "@ngx-utils/cookies";
+import { SESSION_STORAGE } from "@ng-web-apis/common";
 import {
   AuthConfig,
   JwksValidationHandler,
@@ -40,47 +40,49 @@ export class AuthService implements OnInit, OnDestroy {
     private router: Router,
     private oauthService: OAuthService,
     @Inject(PLATFORM_ID) private platformId: Object,
-    private cookieService: CookiesService
+    // private cookieService: CookiesService
+    @Inject(SESSION_STORAGE) private cookieService: Storage
   ) {
     console.log("AuthService");
 
-    if (isPlatformBrowser(this.platformId)) {
+    // if (isPlatformBrowser(this.platformId)) {
       console.log("This code is run in browser");
       // Client only code.
-      let storedConfig = this.cookieService.get("config");
+      let storedConfig = this.cookieService.getItem("config");
 
       if (storedConfig) {
-        this.configureCodeFlow(this.configMap[storedConfig]);
+        debugger
+        // this.configureCodeFlow(this.configMap[storedConfig]);
         //this.cookieService.remove(storedConfig);
       }
-    }
+    // }
 
     console.log("this code is run in server and browser");
 
-    this._isAuthenticated.next(this.oauthService.hasValidAccessToken());
+    // this._isAuthenticated.next(this.oauthService.hasValidAccessToken());
 
-    this.subscriptions.oauthEvents = this.oauthService.events.subscribe(
-      (event) => {
-        this._isAuthenticated.next(this.oauthService.hasValidAccessToken());
+    // this.subscriptions.oauthEvents = this.oauthService.events.subscribe(
+    //   (event) => {
+    //     this._isAuthenticated.next(this.oauthService.hasValidAccessToken());
 
-        if (event instanceof OAuthErrorEvent) {
-          console.error(event);
-          if (["session_terminated", "session_error"].includes(event.type)) {
-            this.router.navigate(["login"]);
-          }
-        } else if (event instanceof OAuthSuccessEvent) {
-          console.warn(event);
-          if (["token_received"].includes(event.type)) {
-            this.getUserInfo();
-          }
-        } else if (event instanceof OAuthInfoEvent) {
-          console.info(event);
-          // if(['discovery_document_loaded'].includes(event.type) && event.info && this.oauthService.hasValidAccessToken()){
-          //   this.oauthService.initCodeFlow();
-          // }
-        }
-      }
-    );
+    //     if (event instanceof OAuthErrorEvent) {
+    //       console.error(event);
+    //       if (["session_terminated", "session_error"].includes(event.type)) {
+    //         this.router.navigate(["login"]);
+    //       }
+    //     } else if (event instanceof OAuthSuccessEvent) {
+    //       console.warn(event);
+    //       if (["token_received"].includes(event.type)) {
+    //         this.getUserInfo();
+    //       }
+    //     } else if (event instanceof OAuthInfoEvent) {
+    //       console.info(event);
+    //       // if(['discovery_document_loaded'].includes(event.type) && event.info && this.oauthService.hasValidAccessToken()){
+    //       //   this.oauthService.initCodeFlow();
+    //       // }
+    //     }
+    //   }
+    // );
   }
 
   ngOnInit() {
@@ -101,14 +103,14 @@ export class AuthService implements OnInit, OnDestroy {
   login(config: string): void {
     if (isPlatformBrowser(this.platformId)) {
       // Client only code.
-      this.cookieService.put("config", config);
+      this.cookieService.setItem("config", config);
     }
 
     this.configureCodeFlow(this.configMap[config]);
   }
 
   logout(): void {
-    this.cookieService.remove("config");
+    this.cookieService.removeItem("config");
     this.oauthService.logOut();
   }
 

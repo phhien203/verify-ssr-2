@@ -1,16 +1,49 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="utf-8">
-  <title>VerifySsr2</title>
-  <base href="/">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="icon" type="image/x-icon" href="favicon.ico">
-  <link rel="manifest" href="manifest.webmanifest">
-  <meta name="theme-color" content="#1976d2">
-</head>
-<body>
-  <app-root></app-root>
-  <noscript>Please enable JavaScript to continue using this application.</noscript>
-</body>
+  <head>
+    <meta charset="utf-8" />
+    <title>VerifySsr2</title>
+    <base href="/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/x-icon" href="favicon.ico" />
+    <link rel="manifest" href="manifest.webmanifest" />
+    <meta name="theme-color" content="#1976d2" />
+    <script>
+      (function (n, i, v, r, s, c, x, z) {
+        x = window.AwsRumClient = { q: [], n: n, i: i, v: v, r: r, c: c };
+        window[n] = function (c, p) {
+          x.q.push({ c: c, p: p });
+        };
+        z = document.createElement("script");
+        z.async = true;
+        z.src = s;
+        document.head.insertBefore(
+          z,
+          document.head.getElementsByTagName("script")[0]
+        );
+      })(
+        "cwr",
+        "049f56a1-5bf1-489d-9138-0224bce05bf8",
+        "1.0.0",
+        "ap-southeast-1",
+        "https://client.rum.us-east-1.amazonaws.com/1.12.0/cwr.js",
+        {
+          sessionSampleRate: 1,
+          guestRoleArn:
+            "arn:aws:iam::584520752362:role/RUM-Monitor-ap-southeast-1-584520752362-7815695652761-Unauth",
+          identityPoolId: "ap-southeast-1:a996feef-37a9-460e-8fb9-94928dd9071d",
+          endpoint: "https://dataplane.rum.ap-southeast-1.amazonaws.com",
+          telemetries: ["performance", "errors", "http"],
+          allowCookies: true,
+          enableXRay: false,
+        }
+      );
+    </script>
+  </head>
+  <body>
+    <app-root></app-root>
+    <noscript
+      >Please enable JavaScript to continue using this application.</noscript
+    >
+  </body>
 </html>

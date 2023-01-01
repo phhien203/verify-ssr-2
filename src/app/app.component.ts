@@ -1,5 +1,8 @@
 import { Component, Inject } from "@angular/core";
 import { LOCAL_STORAGE, WINDOW } from "@ng-web-apis/common";
+import { AuthConfig, OAuthService } from "angular-oauth2-oidc";
+import { JwksValidationHandler } from "angular-oauth2-oidc-jwks";
+import { authCodeFlowConfig } from "./auth/auth.config";
 
 @Component({
   selector: "app-root",
@@ -49,11 +52,40 @@ import { LOCAL_STORAGE, WINDOW } from "@ng-web-apis/common";
 export class AppComponent {
   title = "verify-ssr-2";
 
+  private configMap: any = {
+    demo: authCodeFlowConfig,
+  };
+
   constructor(
+    private oauthService: OAuthService,
     @Inject(WINDOW) private readonly windowRef: Window,
     @Inject(LOCAL_STORAGE) private readonly localStorageRef: Storage
   ) {
     console.log(this.windowRef.location.href);
     // this.localStorageRef.setItem("verify-ssr-2", "hehehe2");
+    this.configureCodeFlow(this.configMap["demo"]);
+  }
+
+  private getUserInfo() {
+    this.oauthService.loadUserProfile().then((userInfo: object) => {
+      // console.log(userInfo);
+      // this._user.next(userInfo as UserInfo);
+    });
+  }
+
+  private configureCodeFlow(authConfig: AuthConfig): void {
+    this.oauthService.configure(authConfig);
+    this.oauthService.setupAutomaticSilentRefresh();
+    this.oauthService.tokenValidationHandler = new JwksValidationHandler();
+    this.oauthService.loadDiscoveryDocumentAndTryLogin().then(
+      (): void => {
+        if (this.oauthService.hasValidAccessToken()) {
+          this.getUserInfo();
+        } else {
+          this.oauthService.initCodeFlow();
+        }
+      },
+      () => {}
+    );
   }
 }
